@@ -1,0 +1,9 @@
+.indicator-bar {
+    display: flex;
+    align-items: center;
+}
+  
+.indicator-icon {
+    margin: 2px;
+    font-size: 1.5rem;
+}
