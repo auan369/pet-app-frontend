@@ -17,7 +17,7 @@ function PetDashboard() {
     // Set up interval to fetch pet data every 5 minutes (300000 ms)
     const interval = setInterval(() => {
       fetchPetData();
-    }, 30000); // 0.5 minutes = 30000 ms
+    }, 60000); // 1 minutes = 60000 ms
 
     // Clean up the interval when the component unmounts
     return () => clearInterval(interval);
