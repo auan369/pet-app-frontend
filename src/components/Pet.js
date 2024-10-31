@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import pico from '../images/pixil-layer-Layer 1.png';
-import picoSad from '../images/pixil-layer-Sad.png';
-import picoHungry from '../images/pixil-layer-hungry.png';
-import picoHappy from '../images/pixil-layer-Layer 2.png';
+import pico from '../images/pico/pixil-layer-Layer 1.png';
+import picoSad from '../images/pico/pixil-layer-Sad.png';
+import picoHungry from '../images/pico/pixil-layer-hungry.png';
+import picoHappy from '../images/pico/pixil-layer-Layer 2.png';
+import minnie from '../images/minnie/minnie.png';
+import minnieSad from '../images/minnie/minnie-sad.png';
+import minnieHungry from '../images/minnie/minnie-hungry.png';
+import minnieHappy from '../images/minnie/minnie-happy.png';
+import yuri from '../images/yuri/yuri.png';
+import yuriSad from '../images/yuri/yuri-sad.png';
+import yuriHungry from '../images/yuri/yuri-hungry.png';
+import yuriHappy from '../images/yuri/yuri-happy.png';
 import IndicatorBar from './IndicatorBar';
 import './Pet.css';
+
+const petImages = { "pico": [pico, picoSad, picoHungry, picoHappy], "minnie": [minnie, minnieSad, minnieHungry, minnieHappy], "yuri": [yuri, yuriSad, yuriHungry, yuriHappy] }; 
 
 function Pet(props) {
   // const [hunger, setHunger] = useState(50);
@@ -13,9 +23,9 @@ function Pet(props) {
   const [frameIndex, setFrameIndex] = useState(0);
 
   const getEmotion = () => {
-    if (props.hunger >= 90) {return picoHungry;};
-    if (props.happiness <= 10)  {return picoSad;}
-    return picoHappy;
+    if (props.hunger >= 90) {return petImages[props.petType][2];}; //hunger icon
+    if (props.happiness <= 10)  {return petImages[props.petType][1];}
+    return petImages[props.petType][3];
   };
 
   // Game loop - decrease happiness and increase hunger over time
@@ -51,7 +61,7 @@ function Pet(props) {
       {/* <p>Happiness:</p> */}
       <IndicatorBar level={Math.round(props.happiness/20)} maxLevel={5} icon="😀" />
       <div>
-        <img src={frameIndex? pico: getEmotion()} className = "pico" alt="logo" style={{height: "20vmin", pointerEvents: "none", imageRendering: "pixelated"}}/>
+        <img src={frameIndex? petImages[props.petType][0]: getEmotion()} className = "pico" alt="logo" style={{height: "20vmin", pointerEvents: "none", imageRendering: "pixelated"}}/>
       </div>
       <IndicatorBar level={props.poopCount} maxLevel={3} icon="💩" />
     </div>
