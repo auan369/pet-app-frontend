@@ -33,7 +33,7 @@ function PetDashboard() {
     const userId = localStorage.getItem('userId');
 
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/pets/user/${userId}`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}api/pets/user/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -57,7 +57,7 @@ function PetDashboard() {
     happiness = Math.min(100, happiness);
 
     try {
-      await axios.put(`${process.env.REACT_APP_API_URL}/api/pets/${petId}`, {
+      await axios.put(`${process.env.REACT_APP_API_URL}api/pets/${petId}`, {
         hunger:hunger,
         happiness:happiness, 
         health:health,
