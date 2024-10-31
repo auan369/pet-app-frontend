@@ -113,9 +113,9 @@ function PetDashboard() {
     <div className="tamagotchi-console">
       <h1 className="console-header">Pet Dashboard</h1>
       <div className="console-screen">
-        {pet ? (
+        {pet ? (pet.isAlive === true)? (
           <Pet hunger={pet.hunger} health={pet.health} happiness={pet.happiness} poopCount={pet.poopCount} />
-        ) : ( <h1>Loading...</h1> )}  
+        ) : ( <h1>Pet died :/...</h1> ) : ( <h1>Loading...</h1> )}  
       </div>
       <div className="console-buttons">
         <button onClick={() => { feedPet(10); } }>🍖 Feed</button>
