@@ -118,8 +118,8 @@ function PetDashboard() {
         ) : ( <h1>Pet died :/...</h1> ) : ( <h1>Loading...</h1> )}  
       </div>
       <div className="console-buttons">
-        <button onClick={() => { feedPet(10); } }>🍖 Feed</button>
-        <button onClick={() => { playPet(10); } }>🎾 Play</button>
+        <button onClick={() => { feedPet(10); } }>🍖 <span>Feed</span></button>
+        <button onClick={() => { playPet(10); } }>🎾 <span>Play</span></button>
         <button onClick={cleanPoop}>🧼 Clean</button>
       </div>
     </div>

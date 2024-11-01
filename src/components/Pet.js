@@ -61,7 +61,7 @@ function Pet(props) {
       {/* <p>Happiness:</p> */}
       <IndicatorBar level={Math.round(props.happiness/20)} maxLevel={5} icon="😀" />
       <div>
-        <img src={frameIndex? petImages[props.petType][0]: getEmotion()} className = "pico" alt="logo" style={{height: "20vmin", pointerEvents: "none", imageRendering: "pixelated"}}/>
+        <img src={frameIndex? petImages[props.petType][0]: getEmotion()} className = "pico" alt="logo" />
       </div>
       <IndicatorBar level={props.poopCount} maxLevel={3} icon="💩" />
     </div>

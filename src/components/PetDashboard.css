@@ -9,8 +9,17 @@
     flex-direction: column;
     align-items: center;
     font-family: 'Press Start 2P', sans-serif;
+    /* aspect-ratio: 3 / 4; */
+    /* border-radius: 100% / 110% 110% 70% 95%; */
+    border-radius: 60% 60% 60% 60% / 70% 70% 40% 40%;
   }
   
+  .tamagotchi-console h1 {
+    font-size: 1.5rem;
+    color: #444;
+    margin: 2rem;
+  }
+
   .console-header {
     font-size: 1.2rem;
     color: #444;
@@ -18,8 +27,8 @@
   }
   
   .console-screen {
-    width: 90%;
-    height: 60%;
+    width: 60%;
+    height: 50%;
     background: #c7e3e7;
     border: 2px solid #333;
     border-radius: 10px;
@@ -40,7 +49,7 @@
     background-color: #8d6cab;
     border: none;
     border-radius: 50%;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #fff;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
     cursor: pointer;
@@ -50,5 +59,9 @@
   .console-buttons button:active {
     transform: translateY(2px);
     box-shadow: none;
+  }
+
+  .console-buttons button span {
+    font-size: 0.5rem;
   }
   

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import './PetDashboard.css';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -40,6 +41,14 @@ function Register() {
         />
         <button type="submit">Register</button>
       </form>
+      <div className="tamagotchi-console">
+      <h1 className="console-header">Login</h1>
+      <div className="console-screen">
+        <div className="console-buttons">
+          
+        </div>
+      </div>
+      </div>
       <p>Already have an account? <Link to="/">Login</Link></p>
     </div>
   );

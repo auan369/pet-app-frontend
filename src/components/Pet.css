@@ -6,3 +6,10 @@
     align-items: center;
     /* border: 1px solid red; */
 }
+
+.pet-container img {
+    height: 18vmin;
+    pointer-events: none;
+    image-rendering: pixelated;
+    /* border: solid 2px #000; */
+}
