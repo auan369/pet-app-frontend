@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Pet from './Pet';
-import Feed from './Feed';
 import './PetDashboard.css';
+import PetConsole from './PetConsole';
 import ConsoleButtons from './ConsoleButtons';
 //import routes
 import { useNavigate } from 'react-router-dom';
@@ -106,16 +105,18 @@ function PetDashboard() {
     updatePet(hunger, happiness, health, 0);
   }
 
-  const handleScroll = (direction) => {
-    if (direction === 'up') {
-      setFeedScreen(true);
-    } else if (direction === 'down') {
-      playPet(10); 
-    } else {
-      cleanPoop();
-    }
+  // const handleScroll = (direction) => {
+  //   if (!feedScreen){
+  //     if (direction === 'up') {
+  //       setFeedScreen(true);
+  //     } else if (direction === 'down') {
+  //       playPet(10); 
+  //     } else {
+  //       cleanPoop();
+  //     }
+  //   }
 
-  };
+  // };
 
   return (
   <div>
@@ -124,7 +125,8 @@ function PetDashboard() {
       localStorage.removeItem('userId');
       navigate('/');
     } } />
-    <div className="tamagotchi-console">
+    <PetConsole pet={pet} setPet={setPet} setPetId={setPetId} feedPet={feedPet} playPet={playPet} cleanPoop={cleanPoop} toggleFeedScreen={toggleFeedScreen} feedScreen={feedScreen} />
+    {/* <div className="tamagotchi-console">
       <h1 className="console-header">Pet Dashboard</h1>
       <div className="console-screen">
         {pet && pet.isAlive && !feedScreen && <Pet hunger={pet.hunger} health={pet.health} happiness={pet.happiness} poopCount={pet.poopCount} petType={pet.petType}/>}
@@ -132,13 +134,12 @@ function PetDashboard() {
         {pet && !pet.isAlive && <h1>Pet died :/...</h1>}
         {!pet && <h1>Loading...</h1>}
       </div>
-      {/* <div className="console-buttons">
+      <div className="console-buttons">
         <button onClick={() => { setFeedScreen(true); } }>🍖 <span>Feed</span></button>
         <button onClick={() => { playPet(10); } }>🎾 <span>Play</span></button>
         <button onClick={cleanPoop}>🧼 <span>Clean</span></button>
-      </div>       */}
-      <ConsoleButtons onSelect={handleScroll} />
-    </div>
+      </div>
+    </div> */}
   </div>
   );
 }
