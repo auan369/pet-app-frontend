@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Pet from './Pet';
+import Feed from './Feed';
 import './PetDashboard.css';
+import ConsoleButtons from './ConsoleButtons';
 //import routes
 import { useNavigate } from 'react-router-dom';
 
@@ -12,6 +14,7 @@ function PetDashboard() {
   const [health, setHealth] = useState(100);
   const [happiness, setHappiness] = useState(50);
   const [poopCount, setPoopCount] = useState(0);
+  const [feedScreen, setFeedScreen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,9 +30,9 @@ function PetDashboard() {
 
   }, []);
 
-  // useEffect((pet, updatePet) => {
-  //   if (pet) updatePet();
-  // }, [hunger, happiness, health]);
+  const toggleFeedScreen = () => {
+    setFeedScreen(!feedScreen);
+  };
 
   const fetchPetData = async () => {
     const token = localStorage.getItem('token');
@@ -103,6 +106,17 @@ function PetDashboard() {
     updatePet(hunger, happiness, health, 0);
   }
 
+  const handleScroll = (direction) => {
+    if (direction === 'up') {
+      setFeedScreen(true);
+    } else if (direction === 'down') {
+      playPet(10); 
+    } else {
+      cleanPoop();
+    }
+
+  };
+
   return (
   <div>
     <input type="button" value="Logout" onClick={() => {
@@ -113,15 +127,17 @@ function PetDashboard() {
     <div className="tamagotchi-console">
       <h1 className="console-header">Pet Dashboard</h1>
       <div className="console-screen">
-        {pet ? (pet.isAlive === true)? (
-          <Pet hunger={pet.hunger} health={pet.health} happiness={pet.happiness} poopCount={pet.poopCount} petType={pet.petType}/>
-        ) : ( <h1>Pet died :/...</h1> ) : ( <h1>Loading...</h1> )}  
+        {pet && pet.isAlive && !feedScreen && <Pet hunger={pet.hunger} health={pet.health} happiness={pet.happiness} poopCount={pet.poopCount} petType={pet.petType}/>}
+        {pet && pet.isAlive && feedScreen && <Feed toggleFeedScreen={toggleFeedScreen} feedPet={feedPet} playPet={playPet} />}
+        {pet && !pet.isAlive && <h1>Pet died :/...</h1>}
+        {!pet && <h1>Loading...</h1>}
       </div>
-      <div className="console-buttons">
-        <button onClick={() => { feedPet(10); } }>🍖 <span>Feed</span></button>
+      {/* <div className="console-buttons">
+        <button onClick={() => { setFeedScreen(true); } }>🍖 <span>Feed</span></button>
         <button onClick={() => { playPet(10); } }>🎾 <span>Play</span></button>
-        <button onClick={cleanPoop}>🧼 Clean</button>
-      </div>
+        <button onClick={cleanPoop}>🧼 <span>Clean</span></button>
+      </div>       */}
+      <ConsoleButtons onSelect={handleScroll} />
     </div>
   </div>
   );

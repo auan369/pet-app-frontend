@@ -48,10 +48,11 @@ function Login() {
     </div>
     <div className="tamagotchi-console">
       <h1 className="console-header">Login</h1>
-      <div className="console-screen">
-        <div className="console-buttons">
-          
-        </div>
+      <div className="console-screen"></div>
+      <div className="console-buttons">
+        <button>🍖 <span>Feed</span></button>
+        <button>🎾 <span>Play</span></button>
+        <button>🧼 Clean</button>
       </div>
     </div>
     <p>Don't have an account? <Link to="/register">Register</Link></p>

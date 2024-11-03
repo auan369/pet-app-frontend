@@ -1,0 +1,16 @@
+.feed-container{
+    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+.feed-container button{
+    font-size: 3rem;
+    color: #fff;
+}
+
+
+
