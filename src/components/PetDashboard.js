@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './PetDashboard.css';
 import PetConsole from './PetConsole';
-import ConsoleButtons from './ConsoleButtons';
+// import ConsoleButtons from './ConsoleButtons';
 //import routes
 import { useNavigate } from 'react-router-dom';
+import FeedConsole from './FeedConsole';
 
 function PetDashboard() {
   const [pet, setPet] = useState(null);
@@ -125,7 +126,8 @@ function PetDashboard() {
       localStorage.removeItem('userId');
       navigate('/');
     } } />
-    <PetConsole pet={pet} setPet={setPet} setPetId={setPetId} feedPet={feedPet} playPet={playPet} cleanPoop={cleanPoop} toggleFeedScreen={toggleFeedScreen} feedScreen={feedScreen} />
+    {feedScreen && <FeedConsole pet={pet} setPet={setPet} setPetId={setPetId} feedPet={feedPet} playPet={playPet} cleanPoop={cleanPoop} toggleFeedScreen={toggleFeedScreen} feedScreen={feedScreen} />}
+    {!feedScreen && <PetConsole pet={pet} setPet={setPet} setPetId={setPetId} feedPet={feedPet} playPet={playPet} cleanPoop={cleanPoop} toggleFeedScreen={toggleFeedScreen} feedScreen={feedScreen} />}
     {/* <div className="tamagotchi-console">
       <h1 className="console-header">Pet Dashboard</h1>
       <div className="console-screen">

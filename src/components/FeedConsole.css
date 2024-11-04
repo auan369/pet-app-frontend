@@ -7,9 +7,11 @@
     /* border: 1px solid red; */
 }
 
-.feed-container button{
-    font-size: 3rem;
-    color: #fff;
+.food-display{
+    /* padding: 0px; */
+    margin: 0px;
+    font-size: 5rem;
+    /* color: #fff; */
 }
 
 
