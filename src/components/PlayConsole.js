@@ -2,20 +2,24 @@ import React, {useState} from 'react';
 import './PetDashboard.css';
 import './PlayConsole.css';
 
-function PlayConsole({pet, setPet, setPetId, feedPet, playPet, cleanPoop, togglePlayScreen, feedScreen}) {
+function PlayConsole({pet, setPet, setPetId, feedPet, playPet, cleanPoop, togglePlayScreen, feedScreen, toggleGameScreen}) {
   //select button on screen using the console buttons
-  const playOptions = ['⚽', '🎳', '🚶'];
+  const playOptions = ['⚽', '🃏', '🚶'];
   const [selectedplayIndex, setSelectedplayIndex] = useState(0);
   const onPlay = (play) => {
     if (play === '⚽') {
       feedPet(-10);
       playPet(20);
-    } else if (play === '🎳'){
-      feedPet(-5);
-      playPet(10);
+      togglePlayScreen(); // Close the feed screen
+    } else if (play === '🃏'){
+      // feedPet(-5);
+      // playPet(10);
+      togglePlayScreen(); // Close the feed screen
+      toggleGameScreen();
     } else if (play === '🚶') {
       feedPet(-10);
       playPet(30);
+      togglePlayScreen(); // Close the feed screen
     } else{
       console.log('Invalid play option');
     }
@@ -39,7 +43,7 @@ function PlayConsole({pet, setPet, setPetId, feedPet, playPet, cleanPoop, toggle
   const handleSelectPress = () => {
     const selectedplay = playOptions[selectedplayIndex];
     onPlay(selectedplay); // Trigger feeding action in parent
-    togglePlayScreen(); // Close the feed screen
+    // togglePlayScreen(); // Close the feed screen
   };
 
   return (

@@ -1,0 +1,33 @@
+.play-container{
+    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+.play-display{
+    /* padding: 0px; */
+    margin: 0px;
+    font-size: 5rem;
+    /* color: #fff; */
+}
+
+.console-screen{
+    /* padding: 0px; */
+    justify-items: center;
+    /* align-items: center; */
+    /* align-content: center; */
+    /* color: #fff; */
+}
+
+.console-screen .display{
+    /* padding: 0px; */
+    /* padding: 1rem; */
+    font-size: 2rem;
+    /* color: #fff; */
+}
+
+
+

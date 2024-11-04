@@ -7,7 +7,7 @@ import PetConsole from './PetConsole';
 import { useNavigate } from 'react-router-dom';
 import FeedConsole from './FeedConsole';
 import PlayConsole from './PlayConsole';
-// import MemoryGameConsole from './MemoryGameConsole';
+import MemoryGameConsole from './MemoryGameConsole';
 
 function PetDashboard() {
   const [pet, setPet] = useState(null);
@@ -18,6 +18,7 @@ function PetDashboard() {
   const [poopCount, setPoopCount] = useState(0);
   const [feedScreen, setFeedScreen] = useState(false);
   const [playScreen, setPlayScreen] = useState(false);
+  const [gameScreen, setGameScreen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,6 +40,10 @@ function PetDashboard() {
 
   const togglePlayScreen = () => {
     setPlayScreen(!playScreen);
+  };
+
+  const toggleGameScreen = () => {
+    setGameScreen(!gameScreen);
   };
 
   const fetchPetData = async () => {
@@ -133,10 +138,10 @@ function PetDashboard() {
       localStorage.removeItem('userId');
       navigate('/');
     } } />
-    {/* <MemoryGameConsole pet={pet} setPet={setPet} setPetId={setPetId} feedPet={feedPet} playPet={playPet} cleanPoop={cleanPoop} togglePlayScreen={togglePlayScreen} feedScreen={feedScreen} /> */}
-    {!feedScreen && !playScreen && <PetConsole pet={pet} setPet={setPet} setPetId={setPetId} feedPet={feedPet} playPet={playPet} cleanPoop={cleanPoop} toggleFeedScreen={toggleFeedScreen} togglePlayScreen={togglePlayScreen} feedScreen={feedScreen} />}
+    {!feedScreen && !playScreen && !gameScreen && <PetConsole pet={pet} setPet={setPet} setPetId={setPetId} feedPet={feedPet} playPet={playPet} cleanPoop={cleanPoop} toggleFeedScreen={toggleFeedScreen} togglePlayScreen={togglePlayScreen} feedScreen={feedScreen} />}
     {feedScreen && <FeedConsole pet={pet} setPet={setPet} setPetId={setPetId} feedPet={feedPet} playPet={playPet} cleanPoop={cleanPoop} toggleFeedScreen={toggleFeedScreen} feedScreen={feedScreen} />}
-    {playScreen && <PlayConsole pet={pet} setPet={setPet} setPetId={setPetId} feedPet={feedPet} playPet={playPet} cleanPoop={cleanPoop} togglePlayScreen={togglePlayScreen} feedScreen={feedScreen} />}
+    {playScreen && <PlayConsole pet={pet} setPet={setPet} setPetId={setPetId} feedPet={feedPet} playPet={playPet} cleanPoop={cleanPoop} togglePlayScreen={togglePlayScreen} toggleGameScreen={toggleGameScreen} feedScreen={feedScreen} />}
+    {!playScreen && gameScreen && <MemoryGameConsole pet={pet} setPet={setPet} setPetId={setPetId} feedPet={feedPet} playPet={playPet} cleanPoop={cleanPoop} toggleGameScreen={toggleGameScreen} feedScreen={feedScreen} />}
     {/* {<h1>Error loading screen...</h1>} */}
   </div>
   );
