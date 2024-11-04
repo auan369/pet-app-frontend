@@ -1,7 +1,7 @@
 import React from 'react';
 import Pet from './Pet';
 import './PetDashboard.css';
-function PetConsole({pet, setPet, setPetId, feedPet, playPet, cleanPoop, toggleFeedScreen, feedScreen}) {
+function PetConsole({pet, setPet, setPetId, feedPet, playPet, cleanPoop, toggleFeedScreen, togglePlayScreen, feedScreen}) {
   return (
     <div className="tamagotchi-console">
       <h1 className="console-header">Pet Dashboard</h1>
@@ -12,7 +12,7 @@ function PetConsole({pet, setPet, setPetId, feedPet, playPet, cleanPoop, toggleF
       </div>
       <div className="console-buttons">
         <button onClick={() => { toggleFeedScreen(); } }>🍖 <span>Feed</span></button>
-        <button onClick={() => { playPet(10); } }>🎾 <span>Play</span></button>
+        <button onClick={() => { togglePlayScreen(); } }>🎾 <span>Play</span></button>
         <button onClick={cleanPoop}>🧼 <span>Clean</span></button>
       </div>      
       {/* <ConsoleButtons onSelect={handleScroll} /> */}

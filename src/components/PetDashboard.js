@@ -6,6 +6,8 @@ import PetConsole from './PetConsole';
 //import routes
 import { useNavigate } from 'react-router-dom';
 import FeedConsole from './FeedConsole';
+import PlayConsole from './PlayConsole';
+// import MemoryGameConsole from './MemoryGameConsole';
 
 function PetDashboard() {
   const [pet, setPet] = useState(null);
@@ -15,6 +17,7 @@ function PetDashboard() {
   const [happiness, setHappiness] = useState(50);
   const [poopCount, setPoopCount] = useState(0);
   const [feedScreen, setFeedScreen] = useState(false);
+  const [playScreen, setPlayScreen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,6 +35,10 @@ function PetDashboard() {
 
   const toggleFeedScreen = () => {
     setFeedScreen(!feedScreen);
+  };
+
+  const togglePlayScreen = () => {
+    setPlayScreen(!playScreen);
   };
 
   const fetchPetData = async () => {
@@ -126,22 +133,11 @@ function PetDashboard() {
       localStorage.removeItem('userId');
       navigate('/');
     } } />
+    {/* <MemoryGameConsole pet={pet} setPet={setPet} setPetId={setPetId} feedPet={feedPet} playPet={playPet} cleanPoop={cleanPoop} togglePlayScreen={togglePlayScreen} feedScreen={feedScreen} /> */}
+    {!feedScreen && !playScreen && <PetConsole pet={pet} setPet={setPet} setPetId={setPetId} feedPet={feedPet} playPet={playPet} cleanPoop={cleanPoop} toggleFeedScreen={toggleFeedScreen} togglePlayScreen={togglePlayScreen} feedScreen={feedScreen} />}
     {feedScreen && <FeedConsole pet={pet} setPet={setPet} setPetId={setPetId} feedPet={feedPet} playPet={playPet} cleanPoop={cleanPoop} toggleFeedScreen={toggleFeedScreen} feedScreen={feedScreen} />}
-    {!feedScreen && <PetConsole pet={pet} setPet={setPet} setPetId={setPetId} feedPet={feedPet} playPet={playPet} cleanPoop={cleanPoop} toggleFeedScreen={toggleFeedScreen} feedScreen={feedScreen} />}
-    {/* <div className="tamagotchi-console">
-      <h1 className="console-header">Pet Dashboard</h1>
-      <div className="console-screen">
-        {pet && pet.isAlive && !feedScreen && <Pet hunger={pet.hunger} health={pet.health} happiness={pet.happiness} poopCount={pet.poopCount} petType={pet.petType}/>}
-        {pet && pet.isAlive && feedScreen && <Feed toggleFeedScreen={toggleFeedScreen} feedPet={feedPet} playPet={playPet} />}
-        {pet && !pet.isAlive && <h1>Pet died :/...</h1>}
-        {!pet && <h1>Loading...</h1>}
-      </div>
-      <div className="console-buttons">
-        <button onClick={() => { setFeedScreen(true); } }>🍖 <span>Feed</span></button>
-        <button onClick={() => { playPet(10); } }>🎾 <span>Play</span></button>
-        <button onClick={cleanPoop}>🧼 <span>Clean</span></button>
-      </div>
-    </div> */}
+    {playScreen && <PlayConsole pet={pet} setPet={setPet} setPetId={setPetId} feedPet={feedPet} playPet={playPet} cleanPoop={cleanPoop} togglePlayScreen={togglePlayScreen} feedScreen={feedScreen} />}
+    {/* {<h1>Error loading screen...</h1>} */}
   </div>
   );
 }
