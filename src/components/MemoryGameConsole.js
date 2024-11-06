@@ -20,62 +20,96 @@ var answerGenerated = createRandomAnswer(2);
 function MemoryGameConsole({pet, setPet, setPetId, feedPet, playPet, cleanPoop, togglePlayScreen, feedScreen, toggleGameScreen}) {
   const [answerArray, setAnswerArray] = useState([]);
   const [displaySymbol, setDisplaySymbol] = useState(null);
-  const [showingSequence, setShowingSequence] = useState(false);
+  const [showingSequence, setShowingSequence] = useState(true);
 
+  // useEffect(() => {
+  //   var i = 1;
+  //   const interval = setInterval(() => {
+  //     if (i <= answerGenerated.length) {
+  //       console.log(answerGenerated.slice(0,i));
+  //       setDisplaySymbol(answerGenerated.slice(0,i));
+  //       // console.log(typeof answerGenerated[0,i]);
+  //       i++;
+  //     } else {
+  //       clearInterval(interval);
+  //       setDisplaySymbol(null);
+  //     }
+  //   }, 1000);
+  // }, [answerGenerated]);
   useEffect(() => {
-    var i = 1;
-    const interval = setInterval(() => {
-      if (i <= answerGenerated.length) {
-        console.log(answerGenerated.slice(0,i));
-        setDisplaySymbol(answerGenerated.slice(0,i));
-        // console.log(typeof answerGenerated[0,i]);
-        i++;
-      } else {
-        clearInterval(interval);
-        setDisplaySymbol(null);
-      }
-    }, 1000);
+    // Display the answer sequence one by one
+    setShowingSequence(true);
+    answerGenerated.forEach((symbol, i) => {
+      setTimeout(() => {
+        setDisplaySymbol(answerGenerated.slice(0, i + 1));
+      }, i * 1000);
+    });
+    // Clear the display after the sequence is shown
+    setTimeout(() => {
+      setDisplaySymbol(null);
+      setShowingSequence(false);
+    }, answerGenerated.length * 1000 + 500);
   }, [answerGenerated]);
   
   const handleUpPress = () => {
-    if (answerArray.length >= answerGenerated.length) {
-      setAnswerArray(['🔼']);
-    } else{
-      setAnswerArray([...answerArray, '🔼']);
+    if (!showingSequence) {
+      if (answerArray.length >= answerGenerated.length) {
+        setAnswerArray(['🔼']);
+      } else{
+        setAnswerArray([...answerArray, '🔼']);
+      }
     }
   };
 
   // Move to the next play item
   const handleDownPress = () => {
-    if (answerArray.length >= answerGenerated.length) {
-      setAnswerArray(['🔽']);
-    } else{
-    setAnswerArray([...answerArray, '🔽']);
-    };
+    if (!showingSequence) {
+      if (answerArray.length >= answerGenerated.length) {
+        setAnswerArray(['🔽']);
+      } else{
+      setAnswerArray([...answerArray, '🔽']);
+      };
+    }
   };
 
   // Feed the pet with the selected play
   const handleSelectPress = () => {
-    if (answerArray.length === answerGenerated.length) {
-      if (answerArray.toString() === answerGenerated.toString()) {
-        console.log('Correct');
-        setAnswerArray([]);
-        if (answerGenerated.length === 5) {
-          playPet(60);
-          toggleGameScreen(); // Close the feed screen
+    if (!showingSequence) {
+      if (answerArray.length === answerGenerated.length) {
+        if (answerArray.toString() === answerGenerated.toString()) {
+          console.log('Correct');
+          setAnswerArray([]);
+          if (answerGenerated.length === 5) {
+            setAnswerArray(["Correct!"]);
+            setTimeout(() => {
+              setAnswerArray([]); // Clear the display after 1 second
+              playPet(60);
+              answerGenerated = createRandomAnswer(2);
+              toggleGameScreen(); // Close the feed screen
+            }, 1000); 
+          } else {
+            answerGenerated = createRandomAnswer(answerGenerated.length + 1);
+          }
         } else {
-          answerGenerated = createRandomAnswer(answerGenerated.length + 1);
+          console.log('Incorrect');
+          // setDisplaySymbol(["Too short"]); // Display "Too short" if the sequence is too short
+          setAnswerArray(["Incorrect"]);
+          setTimeout(() => {
+            setAnswerArray([]); // Clear the display after 1 second
+            playPet((answerGenerated.length+1) * 10);
+            answerGenerated = createRandomAnswer(2);
+            toggleGameScreen(); // Close the feed screen
+          }, 1000); 
         }
+        setShowingSequence(true); // Start showing the new sequence
       } else {
-        console.log('Incorrect');
+        //set this for 1 second
+        setDisplaySymbol(["Too short"]); // Display "Too short" if the sequence is too short
+        setTimeout(() => {
+          setDisplaySymbol(null); // Clear the display after 1 second
+        }, 1000);
         setAnswerArray([]);
-        playPet((answerGenerated.length+1) * 10);
-        toggleGameScreen(); // Close the feed screen
-        // answerGenerated = createRandomAnswer(answerGenerated.length);
       }
-      setShowingSequence(true); // Start showing the new sequence
-    } else {
-      setAnswerArray([]);
     }
   };
   
