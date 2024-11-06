@@ -15,16 +15,28 @@
     border-radius: 60% 60% 60% 60% / 70% 70% 40% 40%;
   }
   
-  .tamagotchi-console h1 {
-    font-size: 1.5rem;
+  /* .tamagotchi-console h1 {
+    font-size: 0.8rem;
+    font-weight: 100;
+    color: #444;
+    margin: 2rem;
+  } */
+
+  .tamagotchi-console h2 {
+    font-size: 0.8rem;
+    font-weight: 100;
     color: #444;
     margin: 2rem;
   }
 
   .console-header {
-    font-size: 1.2rem;
+    /* font-size: 1.2rem;
     color: #444;
-    margin-bottom: 15px;
+    margin-bottom: 15px; */
+    font-size: 0.8rem;
+    font-weight: 100;
+    color: #444;
+    margin: 2rem;
   }
   
   .console-screen {

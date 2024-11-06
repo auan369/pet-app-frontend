@@ -93,7 +93,7 @@ function MemoryGameConsole({pet, setPet, setPetId, feedPet, playPet, cleanPoop, 
         } else {
           console.log('Incorrect');
           // setDisplaySymbol(["Too short"]); // Display "Too short" if the sequence is too short
-          setAnswerArray(["Incorrect"]);
+          setAnswerArray(["Wrong!"]);
           setTimeout(() => {
             setAnswerArray([]); // Clear the display after 1 second
             playPet((answerGenerated.length+1) * 10);

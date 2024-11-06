@@ -52,7 +52,7 @@ function Login() {
       <div className="console-buttons">
         <button>🍖 <span>Feed</span></button>
         <button>🎾 <span>Play</span></button>
-        <button>🧼 Clean</button>
+        <button>🧼 <span>Clean</span></button>
       </div>
     </div>
     <p>Don't have an account? <Link to="/register">Register</Link></p>

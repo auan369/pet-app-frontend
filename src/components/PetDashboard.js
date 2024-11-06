@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import "@fontsource/press-start-2p"; // Defaults to weight 400
+// import "@fontsource/press-start-2p/400.css"; // Specify weight
+// import "@fontsource/press-start-2p/400-italic.css"; // Specify weight and style
+// import "@fontsource/press-start-2p/700.css"; // Specify weight
 import './PetDashboard.css';
 import PetConsole from './PetConsole';
 // import ConsoleButtons from './ConsoleButtons';
