@@ -6,8 +6,6 @@ import "@fontsource/press-start-2p"; // Defaults to weight 400
 // import "@fontsource/press-start-2p/700.css"; // Specify weight
 import './PetDashboard.css';
 import PetConsole from './PetConsole';
-// import ConsoleButtons from './ConsoleButtons';
-//import routes
 import { useNavigate } from 'react-router-dom';
 import FeedConsole from './FeedConsole';
 import PlayConsole from './PlayConsole';
